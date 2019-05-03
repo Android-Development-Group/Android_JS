@@ -40,6 +40,8 @@ public class WebActivity extends Activity {
         mBridgeWebView.loadUrl("file:///android_asset/getuserinfo.html");
 
         registerHandler();
+
+        callHandler();
     }
 
     private void registerHandler() {
@@ -51,5 +53,15 @@ public class WebActivity extends Activity {
             }
         });
     }
+
+    private void callHandler() {
+        mBridgeWebView.callHandler("getUserInfo", "Test", new CallBackFunction() {
+            @Override
+            public void onCallBack(String data) {
+                Log.i(TAG, "onCallBack: " + data);
+            }
+        });
+    }
+
 
 }
